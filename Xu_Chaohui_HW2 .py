@@ -279,6 +279,90 @@ def lingo(word):
     
 
 ### Problem 11 ###
+"""
+A sentence splitter is a program capable of splitting a text into sentences. The standard set of heuristics for sentence
+splitting includes (but isn't limited to) the following rules:
+Sentence boundaries occur at one of "."(periods), "?" or "!", except that
+a. Periods followed by whitespace followed by a lower case letter are not sentence boundaries.
+b. Periods followed by a digit with no intervening whitespace are not sentence boundaries.
+c. Periods followed by whitespace and then an upper case letter, but preceded by any of a short list of titles are
+   not sentence boundaries. Sample titles include Mr., Mrs., Dr., and so on.
+d. Periods internal to a sequence of letters with no adjacent whitespace are not sentence boundaries (for example,
+   www.aptex.com, or e.g).
+e. Periods followed by certain kinds of punctuation (notably comma and more periods) are probably not sentence boundaries.
+Your task here is to write a program that given the name of a text file is able to write its content with each sentence
+on a separate line. Test your program with the following short text: Mr. Smith bought cheapsite.com for 1.5 million dollars,
+i.e. he paid a lot for it. Did he mind? Adam Jones Jr. thinks he didn't. In any case, this isn't true... Well, with a
+probability of .9 it isn't. The result should be:
+Mr. Smith bought cheapsite.com for 1.5 million dollars, i.e. he paid a lot for it. \n
+Did he mind? \n
+Adam Jones Jr. thinks he didnt. \n
+In any case, this isn't true... \n
+Well, with a probability of .9 it isn't.
+"""
+
+def sen_splitter(text):
+    """
+    This function is capable of splitting text into sentences by the rules given above
+    """
+    text = text.replace('\n',' ') # combine all the lines together and make them one line
+    newText=[]   #empty new text
+    isDot = False 
+    current_sen = '' #create an empty string
+    i=0  #initialze i = 0
+    while True: 
+        if i == len(text):   #if i is not in the range of text
+            return newText  # return the output
+        elif i == len(text) - 1:    #if i is the last character
+            current_sen = current_sen + text[i] #add the character to the currentSen
+            newText.append(current_sen) # append the final sentence to the list
+        else:
+            current_sen= current_sen + text[i]  #add character
+            if text[i]=='?': # if it's a ?, sentence boundary occurs
+                newText.append(current_sen)
+                current_sen = ''
+                isDot = False
+            elif text[i]=='!': # if it's !, sentence boundary occurs
+                newText.append(current_sen)
+                current_sen = ''
+                isDot = False
+            elif text[i] == '.': 
+                isDot = True
+            elif text[i] == ' ':  #if there is a whitespace after period
+                if isDot == True:
+                    if text[i+1].islower():
+                        isDot = False  #Periods followed by whitespace followed by a lower case letter
+                                        #are not sentence boundaries
+                    elif text.find('Mr.',i-3) == i-3:
+                        isDot = False
+                    elif text.find('Dr.',i-3) == i-3:
+                        isDot = False
+                    elif text.find('Mrs.',i-4) == i-4:
+                        isDot = False
+                        #Periods followed by whitespace and then an upper case letter,
+                        #but preceded by any of a short list of titles are not sentence
+                        #boundaries. Sample titles include Mr., Mrs., Dr., and so on.
+                    else:
+                        newText.append(current_sen) #append currentSen to newTEXT
+                        current_sen = ''
+        i=i+1
+
+
+def write_sentence_split(file_name):
+    """
+    This function open a file and break the sentences in the file and create a file with rewrited 
+    setences
+    """
+    file=open(file_name) # open the file
+    text = file.read() # make the file readable and read the file
+    file.close() # close the file
+    splittedText= sen_splitter(text) # split the sentences and make it a list
+    newFilepath = 'splitted' + file_name # create a new file
+    newFile = open(newFilepath, 'w') # open the new file for writing only
+    for i in range(len(splittedText)): #use for loop
+        newFile.write(splittedText[i]+'\n') # write a sentence in a line into the new file
+    newFile.close()  #close the file we just created
+
 
     
     
