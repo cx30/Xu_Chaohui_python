@@ -3,7 +3,25 @@
 Homework 1 Group F
 """
 
+##Prof G - Header doc should have sections for parameters and what is returned
+##Prof G - I realize you cover that in the description but its a good habit
+##Prof G - to start. Here's an example:
+
+def mynewfunction():
+    """
+    This is an awesome function that always returns 0.
+    
+    Parameters: NONE
+    
+    Returns: 0 (always)
+    
+    gp2016
+    """
+    return(0)
+
 ### Problem 1 ###
+##Prof G - Instead of printing, you should return the larger argument as in
+##Prof G - your solution to problem 2!
 def my_max(a,b):
     """
     This function takes two numbers as arguments and returns largest of them
@@ -47,7 +65,7 @@ def length(string):
         l = l + 1  #store l+1 in l, iterate till the end of the list or string
     return l   #obtain the value of the length of the list or string
 #Example
-length('I am testing!')
+length('I am  testing!')
 
 
 
@@ -63,6 +81,9 @@ def vowel(char):
         
 #Example
 vowel('a')
+vowel('A') ##Prof G - Ooops. Need to cover case. I usually convert to upper
+           ##Prof G - before checking.
+vowel('y')
         
 
 
@@ -84,6 +105,7 @@ def translate(text):
     
 #Example
 translate('this is fun')
+translate('THIS IS FUN') ##Prof G - Ooops. Does not work!
     
 
 
@@ -134,6 +156,7 @@ def is_palindrome(text):
     """
     This function will recognize palindromes and return True if it's palindrome
     """
+    ##Prof G - Nice, here you handle case.
     lowerCase = text.lower()   #convert the text to lowercase 
     reversedString = lowerCase[::-1] #reverse a string
     if lowerCase == reversedString:  #if the converted imput string and the reversed string looks exactly the same
@@ -175,7 +198,7 @@ def overlapping(list1,list2):
     return False #otherwie, return False
 
 #Example
-overlapping([4,5,6],[9,7,8])
+overlapping([4,5,6],[9,5,8])
     
     
 
@@ -202,6 +225,8 @@ def histogram(numbers):
     """
     a = '' #create an empty string
     for n in numbers: #use for loop
+        ##Prof G - Should put a CR instead of a blank. See next comment
+        ##Prof G - print(n * '*', '\n')
         a = a + n * '*' + ' ' #print '*' n times and store the new string in a
     return a #generate the histogram
 
@@ -222,7 +247,7 @@ def max_in_list(list1):
     return currentMax #return the largest number in the list
 
 #Example
-max_in_list([1,2,4,3,5])
+max_in_list([1,2,44,3,5])
     
 
 
