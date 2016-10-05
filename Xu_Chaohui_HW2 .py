@@ -1,3 +1,22 @@
+##Prof G - Header docs should contain separate sections for parameters and what
+##Prof G - is returned by the function.
+
+##Prof G - for example
+
+"""
+This function ...
+
+Parameters:
+    word_list: A list of words
+    max_length: The maximum length of the longest word, all words longer than
+                max_length will be truncated.
+                
+Returns:
+    list of truncated words
+    
+"""
+
+
 ### Problem 1 ###
 """
 Write a version of a palindrome recogniser that accepts a file
@@ -5,6 +24,9 @@ name from the user, reads each line, and prints the line to the
 screen if it is a palindrome
 """
 
+##Prof G - Works pretty well but fails a few test cases. Nice handling of mixed
+##Prof G - case. THe failed cases are a result of not stripping blanks and
+##Prof G - punctuation.
 def recogniser(file_name):
     """
     This palindrome recognizser function accepts a file name from the user,reads
@@ -32,6 +54,7 @@ the pair "stressed desserts". Note, by the way, that each pair by
 itself forms a palindrome
 """
 
+##Prof G - Nice, hanles all test cases.
 def semordnilap(file_name):
     """
     This function accepts a file name from the user and finds and prints all pair
@@ -59,6 +82,7 @@ the characters contained in the file, and prints a sorted and
 nicely formatted character frequency table to the screen
 """
 
+##Prof G - Nice work.
 def char_freq_table(file_name):
     """
     This function will accept a file name from the user and build a frequency listing
@@ -114,6 +138,8 @@ d = {'a':'alfa', 'b':'bravo', 'c':'charlie', 'd':'delta',
 'u':'uniform', 'v':'victor', 'w':'whiskey', 'x':'x-ray',
 'y':'yankee', 'z':'zulu'} #create the ICAO alphabet dictionary
 
+##Prof G - Doesn't work on my mac. Like several others, the problem is that you
+##Prof G - need a space after 'say '. Also, this should handle numbers.
 def speak_ICAO(txt_file, pause1, pause2 ):
     """
     This function will pronounce the message using ICAO
@@ -207,7 +233,7 @@ Torbjörn! You guessed my number in 3 guesses
 """
 import random
 
-
+##Prof G - Why is this not a function?
 name = input('What is yout name?\n') 
         #What the guesser enters will be stored as a string in name
 print('Well, %s, I am thinking of a number between 1 and 20.' %name) 
@@ -246,6 +272,8 @@ following way: >>> import lingo snakeClue: snak(e) fiest
 Clue: f[i](e)s(t) timesClue: [t][i]m[e]s tiger Clue:
 [t][i][g][e][r] 
 """
+
+##Prof G - NIce but doesn't handle repeated characters. Try "catch".
 def lingo(word):
     """
     This function sets a five-letter hidden word and let the player guess the word.
@@ -357,6 +385,7 @@ def write_sentence_split(file_name):
     text = file.read() # make the file readable and read the file
     file.close() # close the file
     splittedText= sen_splitter(text) # split the sentences and make it a list
+    ##Prof G - The next line fails when file_name contains the entire path.
     newFilepath = 'splitted' + file_name # create a new file
     newFile = open(newFilepath, 'w') # open the new file for writing only
     for i in range(len(splittedText)): #use for loop
