@@ -4,7 +4,7 @@ Created on Thu Sep 29 14:55:01 2016
 
 @author: chaohuixu
 """
-
+##Prof G - Nice work.
 ### Question 1 ###
 '''
 Search for the IRIS dataset on the internet.	You should quickly find the	UCI Machine	 Learning	
@@ -19,6 +19,7 @@ data = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/ir
 '''
 Using pandas, display the first ten and the last ten rows of the data
 '''
+##Prof G - Need to call print() function to get output onto console
 first10row = data.head(n = 10) #using pandas to display the first 10 rows of the data
 last10row = data.tail(n = 10) #using pandas to display the last 10 rows of the data
 
@@ -36,12 +37,15 @@ histogram for each of the numeric columns at each bin size. For example, if I ca
 as bin sizes, the function should plot histograms (3 for each numeric variable). Group the histogram by the column 
 name.
 '''
+
 column = ['sepal length', 'sepal width','petal length','petal width'] 
 def hist(list1):
     for col in column: #select column
         for i in list1:  #select bin size
             data.hist(column = col, bins = i) #plot the histogram of selected column with choosen bin size i
 
+##Prof G - Testing
+hist([10,50,100])
 
 ### Question 5 ###
 '''
